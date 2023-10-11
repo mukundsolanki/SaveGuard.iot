@@ -1,22 +1,26 @@
 import RPi.GPIO as GPIO
 import time
+from flask import Flask
 
+app = Flask(__name__)
+
+# Set the GPIO mode to BCM
 GPIO.setmode(GPIO.BCM)
 ir_sensor_pin = 17
-
 GPIO.setup(ir_sensor_pin, GPIO.IN)
 
-try:
-    while True:
-        # Read the state of the IR sensor
-        ir_state = GPIO.input(ir_sensor_pin)
-        
-        if ir_state == GPIO.LOW:
-            print("Obstacle Detected!")
-        else:
-            print("No Obstacle")
-        
-        time.sleep(0.1)
+@app.route('/')
+def status():
+    ir_state = GPIO.input(ir_sensor_pin)
+    if ir_state == GPIO.LOW:
+        return "locked"
+    else:
+        return "unlocked"
 
-except KeyboardInterrupt:
-    GPIO.cleanup()
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
+    try:
+        while True:
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        GPIO.cleanup()
