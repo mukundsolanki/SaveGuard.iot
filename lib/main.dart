@@ -59,22 +59,44 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            status == 'locked'
-                ? Icon(
-                    Icons.lock,
-                    color: Colors.black,
-                    size: 180.0,
-                  )
-                : Icon(
-                    Icons.lock_open,
-                    color: Colors.green,
-                    size: 180.0,
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    status == 'locked'
+                        ? Icon(
+                            Icons.lock,
+                            color: Colors.black,
+                            size: 180.0,
+                          )
+                        : Icon(
+                            Icons.lock_open,
+                            color: Colors.green,
+                            size: 180.0,
+                          ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      status,
+                      style: TextStyle(color: Colors.black, fontSize: 20.0),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(16.0),
+                color: Colors.blue,
+                child: Center(
+                  child: Text(
+                    'Second Container',
+                    style: TextStyle(color: Colors.white, fontSize: 20.0),
                   ),
-            Text(
-              status,
-              style: TextStyle(color: Colors.black, fontSize: 20.0),
+                ),
+              ),
             ),
           ],
         ),
