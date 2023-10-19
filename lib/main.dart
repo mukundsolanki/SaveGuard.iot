@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String status = 'Loading...';
 
   void getStatus() async {
-    final Uri url = Uri.parse('http://192.168.29.80:5000');
+    final Uri url = Uri.parse('http://192.168.37.253:5000');
     try {
       final response = await http.get(url);
       if (response.statusCode == 200) {
@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Obstacle Status'),
+        title: Text('SaveGuart.iot'),
       ),
       body: Center(
         child: Column(
