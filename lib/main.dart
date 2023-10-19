@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SaveGuart.iot'),
+        title: Text('SaveGuart.iot '),
       ),
       body: Center(
         child: Column(
