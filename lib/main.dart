@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'dart:convert';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +22,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String status = 'Loading...';
-
+  List<double> sensorData = [];
+  
   void getStatus() async {
     final Uri url = Uri.parse('http://192.168.29.46:80');
     try {
@@ -42,12 +44,29 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void getSensorData() async {
+    final Uri sensorUrl = Uri.parse('http://192.168.29.46:80/sensor'); // Change this URL to your ESP32 endpoint for sensor data
+    try {
+      final response = await http.get(sensorUrl);
+      if (response.statusCode == 200) {
+        setState(() {
+          sensorData.add(double.parse(response.body));
+        });
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error: $error');
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     // Fetch status every 1 second (1000 milliseconds)
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
       getStatus();
+      getSensorData();
     });
   }
 
