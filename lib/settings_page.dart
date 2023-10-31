@@ -20,11 +20,12 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.black, Color.fromARGB(255, 49, 49, 49)],
-          ),
+          // gradient: LinearGradient(
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          //   colors: [Colors.black, Color.fromARGB(255, 49, 49, 49)],
+          // ),
+          color: Color.fromARGB(255,16,38,59),
         ),
         child: CustomScrollView(
           slivers: <Widget>[
@@ -52,7 +53,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         percent: 0.69,
                         progressColor: Color.fromARGB(255, 0, 255, 8),
                         arcType: ArcType.FULL,
-                        arcBackgroundColor: Color.fromARGB(255, 54, 54, 54),
+                        arcBackgroundColor: Color.fromARGB(255, 112, 112, 112),
                         circularStrokeCap: CircularStrokeCap.round,
                         center: Text(
                           '74%',
@@ -70,6 +71,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 40),
                     _buildInfoRow("Device Name", "SaveGuard IOT"),
                     _buildInfoRow("Connectivity Status", "Connected"),
                     _buildInfoRow("Device Firmware", "v1.0.0"),
