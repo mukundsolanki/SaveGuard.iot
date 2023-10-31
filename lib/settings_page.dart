@@ -9,7 +9,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  AudioPlayer audioPlayer = AudioPlayer(); // Create class-level variable
+  AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          // gradient: LinearGradient(
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          //   colors: [Colors.black, Color.fromARGB(255, 49, 49, 49)],
-          // ),
-          color: Color.fromARGB(255,16,38,59),
+          color: Color.fromARGB(255, 16, 38, 59),
         ),
         child: CustomScrollView(
           slivers: <Widget>[
@@ -72,13 +67,15 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                     SizedBox(height: 40),
-                    _buildInfoRow("Device Name", "SaveGuard IOT"),
+                    _buildInfoRow("Device Name", "SafeGuard IOT"),
                     _buildInfoRow("Connectivity Status", "Connected"),
                     _buildInfoRow("Device Firmware", "v1.0.0"),
                     _buildInfoRow("IP Address", "192.168.34.70"),
                     _buildInfoRow("MAC Address", "AA:BB:CC:DD:EE:FF"),
                     SizedBox(width: 10),
                     _buildUnlinkButton(),
+                    _buildDeactivateGasButton(),
+                    _buildDeactivateIRButton(),
                     // Add more info rows as needed
                   ],
                 ),
@@ -140,6 +137,78 @@ class _SettingsPageState extends State<SettingsPage> {
                 SizedBox(width: 8.0),
                 Text(
                   "Activate Smart lock Mode",
+                  style: TextStyle(fontSize: 16.0, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDeactivateGasButton() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            primary: Color.fromARGB(255, 0, 251, 25),
+          ),
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.air,
+                  color: Colors.white,
+                ),
+                SizedBox(width: 8.0),
+                Text(
+                  "Deactivate Gas Sensor",
+                  style: TextStyle(fontSize: 16.0, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDeactivateIRButton() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            _playAudioAfterDelay();
+          },
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            primary: Color.fromARGB(255, 4, 251, 0),
+          ),
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.door_back_door,
+                  color: Colors.white,
+                ),
+                SizedBox(width: 8.0),
+                Text(
+                  "Deactivate IR Sensor",
                   style: TextStyle(fontSize: 16.0, color: Colors.white),
                 ),
               ],
