@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _currentIndex = index;
     });
 
-    if (index == 2) {
+    if (index == 1) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SettingsPage()),
@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // backgroundColor: ,
       appBar: AppBar(
         title: Text(
-          'SAVE GUARD IOT',
+          'SAFE GUARD IOT',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           status == 'locked'
                               ? Icon(
                                   Icons.lock,
-                                  color: Colors.black,
+                                  color: Colors.white70,
                                   size: 180.0,
                                 )
                               : Icon(
@@ -348,17 +348,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.white,
               ),
             ),
-            NavigationDestination(
-              icon: Icon(
-                Icons.info_outline,
-                color: Colors.white,
-              ),
-              label: 'About',
-              selectedIcon: Icon(
-                Icons.info,
-                color: Colors.white,
-              ),
-            ),
+            // NavigationDestination(
+            //   icon: Icon(
+            //     Icons.info_outline,
+            //     color: Colors.white,
+            //   ),
+            //   label: 'About',
+            //   selectedIcon: Icon(
+            //     Icons.info,
+            //     color: Colors.white,
+            //   ),
+            // ),
             NavigationDestination(
               icon: Icon(
                 Icons.settings_outlined,
