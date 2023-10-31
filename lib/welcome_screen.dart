@@ -51,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
                                 ipAddress = value;
                               },
                               decoration: InputDecoration(
-                                labelText: 'Enter your unique code',
+                                labelText: 'Enter your device IP Address',
                                 labelStyle: TextStyle(color: Colors.white),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
