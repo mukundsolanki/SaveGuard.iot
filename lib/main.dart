@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:fl_chart/fl_chart.dart';
 import 'dart:math';
+import 'settings_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -44,12 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       } else {
         setState(() {
-          status = 'Error: ${response.statusCode}';
+          status = 'Establishing the connection...';
         });
       }
     } catch (error) {
       setState(() {
-        status = 'Error: $error';
+        status = 'Establishing the connection...';
       });
     }
   }
@@ -99,6 +100,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentIndex = index;
     });
+
+    if (index == 2) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SettingsPage()),
+    );
+  }
   }
 
   @override
@@ -146,7 +154,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       side: BorderSide(
-                          color: Color.fromARGB(255, 0, 255, 8), width: 2.0),
+                          color: Color.fromARGB(255, 171, 171, 171),
+                          width: 2.0),
                     ),
                     child: Container(
                       padding: EdgeInsets.all(16.0),
@@ -167,8 +176,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           SizedBox(height: 20.0),
                           Text(
                             status,
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20.0),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -187,7 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(
                           10.0), // Optional: Set border radius
                       side: BorderSide(
-                          color: Color.fromARGB(255, 0, 255, 8),
+                          color: Color.fromARGB(255, 171, 171, 171),
                           width: 2.0), // Optional: Set border color and width
                     ),
                     child: Column(
@@ -195,31 +206,110 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: <Widget>[
                         Icon(
                           Icons.air,
-                          color: Colors.blue,
+                          color: Colors.white70,
                           size: 100.0,
                         ),
                         SizedBox(height: 10.0),
-                        Text(
-                          'Sensor Value: ${sensorData.isNotEmpty ? sensorData.last.toStringAsFixed(2) : "N/A"}',
-                          style: TextStyle(color: Colors.black, fontSize: 20.0),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Sensor Value:',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                              Text(
+                                '${sensorData.isNotEmpty ? sensorData.last.toStringAsFixed(2) : "N/A"}',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 10.0),
-                        Text(
-                            'Carbon Mono Oxide: ${generateCarbonMonoOxide().toStringAsFixed(2)} ppm',
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 20.0)),
-                        Text(
-                            'Methane: ${generateMethane().toStringAsFixed(2)} ppm',
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 20.0)),
-                        Text(
-                            'Smoke Concentration: ${generateSmokeConcentration().toStringAsFixed(2)} ppm',
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 20.0)),
-                        Text(
-                            'Ammonia Sulphur: ${generateAmmoniaSulphur().toStringAsFixed(2)} ppm',
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 20.0)),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Carbon Mono Oxide:',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                              Text(
+                                '${generateCarbonMonoOxide().toStringAsFixed(2)} ppm',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Methane:',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                              Text(
+                                '${generateMethane().toStringAsFixed(2)} ppm',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Smoke Concentration:',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                              Text(
+                                '${generateSmokeConcentration().toStringAsFixed(2)} ppm',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Ammonia Sulphur:',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                              Text(
+                                '${generateAmmoniaSulphur().toStringAsFixed(2)} ppm',
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
