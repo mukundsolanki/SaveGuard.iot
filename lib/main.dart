@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
+// import 'package:myapp/touchpad_screen.dart';
+import 'welcome_screen.dart';
+import 'home_page.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter App',
-      home: MyHomePage(),
-    );
-  }
+void main() {
+  runApp(MyApp());
 }
 
-class MyHomePage extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyAppState createState() => _MyAppState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -41,18 +34,18 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     }
   }
+class _MyAppState extends State<MyApp> {
+  String? ipAddress;
 
-  @override
-  void initState() {
-    super.initState();
-    // Fetch status every 1 second (1000 milliseconds)
-    Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      getStatus();
+  void setIPAddress(String ip) {
+    setState(() {
+      ipAddress = ip;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('SaveGuart.iot '),
@@ -101,6 +94,19 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+    Widget screen;
+
+    if (ipAddress == null) {
+      screen = WelcomeScreen(onIPSubmit: setIPAddress);
+    } else {
+      screen = MyHomePage(ipAddress: ipAddress!);
+    }
+
+    return MaterialApp(
+      title: 'SaveGuart IOT',
+      theme: ThemeData(primarySwatch: Colors.teal),
+      home: screen,
+      // debugShowCheckedModeBanner: false,
     );
   }
 }
